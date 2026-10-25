@@ -31,3 +31,37 @@ These override default behavior. Follow them exactly.
 
 7. **README.md**: add/update the README.md from a user perspective rather than technical. For technical
    please create documents within docs/ folder.
+
+## React conventions
+
+Apply these when writing or changing package code. They follow `docs/development.md`.
+
+8. **Peer dependencies**: `react` and `react-dom` are `peerDependencies` (`^18 || ^19`), never
+   bundled. Don't import `react/cjs/*` or add React to `dependencies`. After changing build config,
+   run `npm run check:packages` for the affected package.
+
+9. **Components and hooks**:
+   - Named exports only, no default exports.
+   - Function components with `.jsx` for JSX; hooks are `use*` in `.js` and have their own tests.
+   - Document props with a JSDoc `@typedef` and export it. No PropTypes, no TypeScript source.
+   - Data comes in through props or callbacks. Never read global state or import from an app.
+
+10. **Hooks rules**: follow the Rules of Hooks (`eslint-plugin-react-hooks`). Keep effect and memo
+    dependency arrays complete, clean up subscriptions and timers, and don't use effects for values
+    that can be derived during render.
+
+11. **Styles**: CSS modules, shipped as one `style.css` that consumers import. No global CSS, no
+    CSS-in-JS.
+
+12. **Accessibility**: use semantic elements first, label every control, and keep `jsx-a11y`
+    clean. Don't silence a11y lint rules without a comment saying why.
+
+13. **Tests**: Vitest, jsdom, Testing Library and `vitest-axe`. Query by role and label, not test
+    IDs or class names. Use `userEvent` for interactions. Every component gets an `axe` check,
+    and tests must pass under StrictMode (the default via `vitest.setup.js`).
+
+14. **Client-only by default**: don't use Server Component features. If an entry needs
+    `"use client"`, make sure the build keeps the directive.
+
+15. **Public API changes**: adding or removing an export, or changing a peer range, needs a
+    short `[Unreleased]` changelog entry and an update to the package README.

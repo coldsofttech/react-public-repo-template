@@ -67,7 +67,7 @@ Repository admins can bypass through a pull request so a solo maintainer is not 
 ## Release flow
 
 1. Bump `version` in the package's `package.json` in a pull request.
-2. After merge, publish a GitHub release tagged `<package name>@<version>`, for example `@scope/example-package@1.0.0`.
+2. After merge, publish a GitHub release tagged `<package name>@<version>`, for example `@scope/example-react-package@1.0.0`.
 3. `release.yml` builds and packs that package in one job, then a second job in the `npm` environment publishes it using OpenID Connect. No token is stored, and only the publish job gets the `id-token` permission.
 
 ## Template lifecycle
