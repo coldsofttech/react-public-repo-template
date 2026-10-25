@@ -8,6 +8,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@scope/example-package": "*"
+    "@scope/example-react-package": "*",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2"
   }
 }

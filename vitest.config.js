@@ -6,8 +6,8 @@ export default defineConfig({
     projects: ['packages/*'],
     coverage: {
       provider: 'v8',
-      include: ['packages/*/src/**/*.js'],
-      exclude: ['**/*.test.js'],
+      include: ['packages/*/src/**/*.{js,jsx}'],
+      exclude: ['**/*.test.{js,jsx}', '**/*.d.ts'],
       // Set the minimum per repository.
       thresholds: { lines: 80, functions: 80, branches: 80, statements: 80 },
     },
